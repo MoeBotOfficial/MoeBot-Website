@@ -1,0 +1,9 @@
+---
+import Icon from './Icon.astro';
+---
+<div class="hero-demo" aria-label="控制台与机器人回复示意">
+  <div class="demo-orbit"></div>
+  <div class="demo-console"><div class="demo-header"><img src="/icon.svg" alt="" width="28" height="28"/><span><strong>MoeBot</strong><small>WEB CONSOLE</small></span><span class="demo-header-label">猫猫机器人控制台</span></div><div class="demo-body"><div class="demo-sidebar"><span>工作空间</span><span>AI 服务</span><span>人格管理</span><span class="selected">关键词回复</span><span>插件管理</span><span>MCP 服务</span></div><div class="demo-editor"><div class="demo-editor-title"><strong>关键词回复</strong><span class="demo-toggle"><b>表单</b><span>YAML</span></span></div><p>让猫猫用你设定的方式回应。</p><label>触发关键词</label><div class="demo-field">你好$</div><label>Markdown 回复</label><div class="demo-field demo-textarea"># 你好，我是猫猫。<br/><br/>来聊天，也来一起做点有趣的事。</div><div class="demo-save"><Icon name="check" size={13}/> 配置由你定义</div></div></div></div>
+  <div class="demo-reply"><div class="reply-label"><img src="/icon.svg" alt="" width="28" height="28"/><strong>猫猫机器人</strong><span>回复示意</span></div><h3>你好，我是猫猫。</h3><div class="reply-buttons"><span>查看帮助 /help</span><span>今日人品 /jrrp</span></div></div>
+  <p class="demo-caption">控制台界面与回复示意 · 使用演示内容</p>
+</div>

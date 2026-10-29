@@ -1,0 +1,11 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../config';
+import '../styles/global.css';
+interface Props { title?: string; description?: string; pageClass?: string; noindex?: boolean }
+const { title, description = site.description, pageClass = '', noindex = false } = Astro.props;
+const pageTitle = title ? `${title} · MoeBot 猫猫机器人` : 'MoeBot 猫猫机器人 · 让群聊，多一点猫猫的陪伴';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#176d58"/><title>{pageTitle}</title><meta name="description" content={description}/><link rel="canonical" href={canonical}/><link rel="icon" type="image/svg+xml" href="/icon.svg"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><meta property="og:type" content="website"/><meta property="og:locale" content="zh_CN"/><meta property="og:site_name" content="MoeBot"/><meta property="og:title" content={pageTitle}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:image" content={new URL('/social-card.png', Astro.site)}/><meta name="twitter:card" content="summary_large_image"/>{noindex && <meta name="robots" content="noindex, follow"/>}</head><body class={pageClass}><a class="skip-link" href="#main">跳到正文</a><Header/><slot/><Footer/></body></html>

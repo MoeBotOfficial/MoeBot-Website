@@ -1,0 +1,6 @@
+---
+import { features } from '../config';
+import Icon from './Icon.astro';
+const { detailed = false } = Astro.props;
+---
+<div class="feature-grid">{features.map(feature => <a class="feature-card" href={feature.href}><span class="feature-icon"><Icon name={feature.icon} size={25}/></span><h3>{feature.title}</h3><p>{feature.text}</p>{detailed && <p class="feature-detail">{feature.detail}</p>}<span class="card-link">查看指南 <Icon name="arrow" size={17}/></span></a>)}</div>

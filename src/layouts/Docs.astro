@@ -1,0 +1,63 @@
+---
+import Base from './Base.astro';
+import Icon from '../components/Icon.astro';
+import { docGroups, site } from '../config';
+import { getCollection } from 'astro:content';
+import '../styles/docs.css';
+interface Props { title: string; description: string; slug?: string; headings?: { depth: number; slug: string; text: string }[]; meta?: { version: string; verifiedAt: string; source?: { repository: string; path: string; commit: string; public: boolean }; imported: boolean } }
+const {title,description,slug='',headings=[],meta} = Astro.props;
+const docs = await getCollection('docs');
+const bySlug = new Map(docs.map(doc => [doc.data.slug, doc]));
+const flat = docGroups.flatMap(group => group.pages).filter(id => bySlug.has(id));
+const position = flat.indexOf(slug);
+const previous = position > 0 ? bySlug.get(flat[position - 1]) : null;
+const next = position >= 0 && position + 1 < flat.length ? bySlug.get(flat[position + 1]) : null;
+const toc = headings.filter(heading => heading.depth >= 2 && heading.depth <= 3);
+const isDeveloper = slug.startsWith('developers/');
+---
+<Base title={title} description={description} pageClass="docs-page"><main id="main" class="docs-container"><div class="docs-breadcrumb"><a href="/">首页</a><span>/</span><a href="/docs/">文档</a>{isDeveloper && <><span>/</span><a href="/docs/developers/">开发者</a></>}<span>/</span><span>{title}</span></div><div class="docs-mobile-tools"><button class="button" id="docs-menu-toggle" aria-expanded="false" aria-controls="docs-sidebar">文档目录 <Icon name="menu" size={18}/></button><button class="button" data-open-search>搜索文档 <Icon name="book" size={17}/></button></div><div class="docs-grid"><aside class="docs-sidebar" id="docs-sidebar" aria-label="文档目录"><button class="docs-search-button" data-open-search><span>搜索文档</span><kbd>⌘ / Ctrl K</kbd></button><nav><a class:list={['docs-home-link',{selected:!slug}]} href="/docs/">文档概览</a>{docGroups.map(group=><div class="docs-nav-group"><h2>{group.label}</h2>{group.pages.map(id=>{const doc=bySlug.get(id);return doc && <a class:list={{selected:slug===id}} href={`/docs/${id}/`} aria-current={slug===id?'page':undefined}>{doc.data.title}</a>})}</div>)}</nav></aside><article class="docs-article" data-pagefind-body><header class="docs-article-header"><span class="pill">{isDeveloper?'开发者文档':'使用文档'}</span><h1>{title}</h1><p class="docs-description">{description}</p>{meta && <div class="docs-meta"><span>适用 {meta.version}</span><span>核对 {meta.verifiedAt}</span>{meta.source && <span>来源 {meta.source.repository.split('/').at(-1)} · {meta.source.commit.slice(0,7)}</span>}</div>}</header><div class="prose"><slot/></div>{meta?.source && <div class="doc-source" data-pagefind-ignore><strong>文档来源</strong><p>正文由 <code>{meta.source.repository}/{meta.source.path}</code> 的 Markdown 快照构建，来源提交 <code>{meta.source.commit.slice(0,12)}</code>。{meta.source.public ? <a href={`https://github.com/${meta.source.repository}/blob/${meta.source.commit}/${meta.source.path}`} target="_blank" rel="noopener noreferrer">查看原文 ↗</a> : '原仓库为私有，这里展示经审阅的文档内容。'}</p></div>}{(previous||next) && <nav class="docs-pagination" aria-label="文档前后页" data-pagefind-ignore>{previous?<a href={`/docs/${previous.data.slug}/`}><small>← 上一篇</small><strong>{previous.data.title}</strong></a>:<span/>}{next?<a href={`/docs/${next.data.slug}/`}><small>下一篇 →</small><strong>{next.data.title}</strong></a>:<span/>}</nav>}</article><aside class="docs-toc" aria-label="本页目录">{toc.length>0 && <><h2>本页目录</h2><nav>{toc.map(h=><a class:list={{'toc-sub':h.depth===3}} href={`#${h.slug}`}>{h.text}</a>)}</nav></>}<div class="toc-note"><strong>当前内测版本</strong><span>核心 / WebUI {site.versions.core}</span><span>SDK {site.versions.sdk}</span><a href="/docs/getting-started/">首次使用指南 →</a></div></aside></div></main><dialog id="docs-search-dialog" class="search-dialog" aria-labelledby="search-heading"><div class="search-dialog-header"><h2 id="search-heading">搜索文档</h2><button class="icon-button" id="close-search" aria-label="关闭搜索">×</button></div><label for="docs-search-input" class="search-label">输入关键词，例如「插件」「回调」「D1」</label><input id="docs-search-input" class="search-input" type="search" placeholder="搜索使用与开发文档" autocomplete="off"/><div id="search-status" class="search-status" role="status">在这里查找使用方法和开发指南。</div><div id="search-results" class="search-results"></div></dialog></Base>
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#docs-search-dialog');
+  const input = document.querySelector<HTMLInputElement>('#docs-search-input');
+  const resultBox = document.querySelector<HTMLElement>('#search-results');
+  const status = document.querySelector<HTMLElement>('#search-status');
+  let searchModule: Promise<any> | undefined;
+  let searchSequence = 0;
+  let timer: ReturnType<typeof setTimeout>;
+  const openSearch = () => {dialog?.showModal(); input?.focus();};
+  document.querySelectorAll('[data-open-search]').forEach(button => button.addEventListener('click',openSearch));
+  document.querySelector('#close-search')?.addEventListener('click',()=>dialog?.close());
+  dialog?.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
+  document.addEventListener('keydown',event=>{if((event.metaKey||event.ctrlKey)&&event.key==='k'){event.preventDefault();openSearch();}});
+  input?.addEventListener('input',()=>{
+    clearTimeout(timer);const sequence=++searchSequence;const term=input.value.trim();
+    if(!term){resultBox?.replaceChildren();if(status)status.textContent='在这里查找使用方法和开发指南。';return;}
+    timer=setTimeout(async()=>{
+      try{
+        if(status)status.textContent='正在查找…';
+        const modulePath='/pagefind/pagefind.js';
+        searchModule ??= import(/* @vite-ignore */ modulePath);
+        const pagefind=await searchModule;
+        const result=await pagefind.search(term);
+        const matches=await Promise.all(result.results.slice(0,12).map((item:any)=>item.data()));
+        if(sequence!==searchSequence)return;
+        resultBox?.replaceChildren();if(status)status.textContent=matches.length?`找到 ${result.results.length} 条结果`:'没有找到结果，试试其他关键词。';
+        for(const match of matches){const link=document.createElement('a');link.href=match.url;link.className='search-result';const title=document.createElement('strong');title.textContent=match.meta.title?.replace(/ · MoeBot.*$/,'')||'文档';const excerpt=document.createElement('p');excerpt.textContent=new DOMParser().parseFromString(match.excerpt,'text/html').body.textContent;link.append(title,excerpt);resultBox?.append(link);}
+      }catch{if(sequence===searchSequence&&status)status.textContent='搜索索引暂时不可用。开发预览请先运行构建，或使用左侧目录查找。';}
+    },180);
+  });
+  const menuToggle=document.querySelector<HTMLButtonElement>('#docs-menu-toggle');
+  const sidebar=document.querySelector<HTMLElement>('#docs-sidebar');
+  menuToggle?.addEventListener('click',()=>{const expanded=menuToggle.getAttribute('aria-expanded')==='true';menuToggle.setAttribute('aria-expanded',String(!expanded));sidebar?.classList.toggle('mobile-open',!expanded);});
+  for(const pre of document.querySelectorAll<HTMLPreElement>('.prose pre')){
+    if(pre.dataset.language==='mermaid'||pre.querySelector('.language-mermaid'))continue;
+    const copy=document.createElement('button');copy.className='code-copy';copy.type='button';copy.textContent='复制';copy.setAttribute('aria-label','复制代码');copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pre.querySelector('code')?.textContent||'');copy.textContent='已复制';setTimeout(()=>copy.textContent='复制',1600);}catch{copy.textContent='请选择代码复制';}});pre.append(copy);
+  }
+  const diagramBlocks=[...document.querySelectorAll<HTMLElement>('.prose pre')].filter(pre=>pre.dataset.language==='mermaid'||pre.querySelector('.language-mermaid'));
+  if(diagramBlocks.length){
+    import('mermaid').then(async({default:mermaid})=>{
+      mermaid.initialize({startOnLoad:false,securityLevel:'strict',theme:'base',themeVariables:{primaryColor:'#eaf3ee',primaryTextColor:'#203a34',primaryBorderColor:'#aac5b8',lineColor:'#72857d',fontFamily:'Noto Sans SC, sans-serif'},flowchart:{htmlLabels:false},maxTextSize:25000});
+      for(const [index,pre] of diagramBlocks.entries()){try{const code=pre.querySelector('code')?.textContent||'';const {svg}=await mermaid.render(`doc-diagram-${index}`,code);const figure=document.createElement('figure');figure.className='doc-diagram';figure.setAttribute('aria-label','流程图');figure.innerHTML=svg;pre.replaceWith(figure);}catch{pre.setAttribute('aria-label','流程图源码');}}
+    }).catch(()=>{});
+  }
+</script>

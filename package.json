@@ -1,0 +1,31 @@
+{
+  "name": "moebot-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MoeBot 官方网站与静态 Markdown 文档",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "check": "astro check",
+    "build": "astro build && pagefind --site dist && node scripts/verify-site.mjs",
+    "preview": "astro preview --host 0.0.0.0",
+    "docs:sync": "node scripts/sync-docs.mjs",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.4.4",
+    "mermaid": "12.2.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@playwright/test": "1.64.1",
+    "cheerio": "1.2.0",
+    "pagefind": "1.5.2",
+    "typescript": "6.0.3"
+  }
+}

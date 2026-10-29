@@ -1,0 +1,229 @@
+{
+  "verifiedAt": "2026-10-29",
+  "sources": [
+    {
+      "title": "关键词与命令面板",
+      "description": "关键词规则、Markdown 标签、按钮与 QQ 指令面板的配置和运行协议。",
+      "slug": "keyword-replies",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "AnnaofArendelle/MoeBot",
+        "path": "docs/keyword-replies.md",
+        "commit": "da740d62042c770e4f26542302155e6b60396b45",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "62cee989cb96c8df319b1852bcec5ac659a264a479128749fe2d35201fef5977",
+      "renderedSha256": "0b7d1af026fadcefbfb345d4ec06c181f22f7cf592fe556eed93f27fa39f7bba"
+    },
+    {
+      "title": "MCP 服务",
+      "description": "接入远程工具、配置触发方式，了解自动续办、回复窗口与失败恢复。",
+      "slug": "mcp",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "AnnaofArendelle/MoeBot",
+        "path": "docs/mcp.md",
+        "commit": "da740d62042c770e4f26542302155e6b60396b45",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "f4255ef127ec57526eaeb79ce9417a023f52b59e9f4add7f006a33c55f3d88a8",
+      "renderedSha256": "06a01f6e3ff1517cac61df7f190d16cace3843f166baecddd80ad6a9eee5187c"
+    },
+    {
+      "title": "MCP 进阶配置",
+      "description": "短答、关键词、斜杠命令、工具说明与使用成本的详细设计。",
+      "slug": "mcp-controls",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "AnnaofArendelle/MoeBot",
+        "path": "docs/mcp-controls.md",
+        "commit": "da740d62042c770e4f26542302155e6b60396b45",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "ff41db69b3eaf1235ce91337433bf6c1b114b408bb25be05a8068804685d3efa",
+      "renderedSha256": "ce91d31d2f6ceda1b656045b5b73135147e8f8171e1c06787b2a46cad4ebe9f7"
+    },
+    {
+      "title": "数据库与存储",
+      "description": "D1 数据结构、SQLite 查询边界与按会话、插件分离的数据存储。",
+      "slug": "storage",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "AnnaofArendelle/MoeBot",
+        "path": "docs/storage.md",
+        "commit": "da740d62042c770e4f26542302155e6b60396b45",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "e40e6d59a85aea1392fbcd2e74ed3b80a079c47e8f81e0f3c145c1d385d3ca85",
+      "renderedSha256": "37a5640a74c7a666f07c614d4bcae64096092fe7174369a0b6acdef583e0da2e"
+    },
+    {
+      "title": "Cloudflare 配额与限制",
+      "description": "了解 Worker、Pages 与 D1 的配额，以及对插件、聊天记忆和部署的影响。",
+      "slug": "cloudflare-limits",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "AnnaofArendelle/MoeBot",
+        "path": "docs/cloudflare-limits.md",
+        "commit": "da740d62042c770e4f26542302155e6b60396b45",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "699f394e2d42c050b04da764e70fd6851185a2d77792d005e04b71e4a78af6b4",
+      "renderedSha256": "de5bceee846d1c985f92ef83346974059073cc2b02adeb1509260b12cb99c166"
+    },
+    {
+      "title": "AI 提供商配置参考",
+      "description": "提供商列表、模型参数、密钥与运行时限制的当前实现。",
+      "slug": "provider-options",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "AnnaofArendelle/MoeBot",
+        "path": "docs/provider-options.md",
+        "commit": "da740d62042c770e4f26542302155e6b60396b45",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "51fa2f3e7ccd433d455c306ae99e8938dc5c12650582ed461f4706df4442f37b",
+      "renderedSha256": "807841e23a303d6bd1e77e6a55fe7b9e7db7ecf312c9ff8b228b5f046a58cd93"
+    },
+    {
+      "title": "QQ 平台接口说明",
+      "description": "QQ 事件、Markdown、按钮、回复窗口与指令面板的开发参考。",
+      "slug": "qq-api-notes",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "AnnaofArendelle/MoeBot",
+        "path": "docs/qq-api-notes.md",
+        "commit": "da740d62042c770e4f26542302155e6b60396b45",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "614d23bbdd89495b6bcd927f465c997f40ed6df748c16b876a04eadf4de8d8cd",
+      "renderedSha256": "01c157fc8d781d77e56c31c792c1978c0a4f9ddbd6d0dd2f184df69cb6c2ff2e"
+    },
+    {
+      "title": "管理与恢复协议",
+      "description": "管理鉴权、D1 初始化、完整安装恢复、配置代次与部署状态确认。",
+      "slug": "developers/management",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "AnnaofArendelle/MoeBot",
+        "path": "docs/management-deployment.md",
+        "commit": "da740d62042c770e4f26542302155e6b60396b45",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "6b3092355b8b7a4729c3400d589879a15603061a90bb629caff0fc549767a216",
+      "renderedSha256": "f9f72ecfd007efadb4c558af07e5b5560221edf2221b6cb08728fb7a7224def9"
+    },
+    {
+      "title": "插件运行与安装协议",
+      "description": "核心插件运行、配置恢复、密钥合并和部署安装集合的内部协议。",
+      "slug": "developers/plugin-runtime",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "AnnaofArendelle/MoeBot",
+        "path": "docs/plugins.md",
+        "commit": "da740d62042c770e4f26542302155e6b60396b45",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "809f57ebb35e081d5b1aa9d85ee811d436b76dfde7cbb17eaefa0c4125fe323f",
+      "renderedSha256": "7c51316d12ccb1affccef28ebd37d8805f150e6bbf6a7237e175a8a1f31de841"
+    },
+    {
+      "title": "独立部署 WebUI",
+      "description": "下载、校验、解压 WebUI 发布包，使用 Vercel CLI 部署和更新静态控制台。",
+      "slug": "webui-deployment",
+      "version": "核心 / WebUI 0.8.6",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "MoeBotOfficial/MoeBot-webUI",
+        "path": "docs/deploy-release.md",
+        "commit": "523b72c23df33a41ef4524a4a8765711b1cd0072",
+        "public": false
+      },
+      "imported": true,
+      "originalSha256": "bd96836029997b1685d10af15b6c9f8884ed44daae24a479c776d95fbeac6896",
+      "renderedSha256": "447d778fc44226b4b12dcdded087ff890af7e37033ce578286721d83819f00e0"
+    },
+    {
+      "title": "Plugin SDK 接口参考",
+      "description": "类型、构建器、回复、存储、HTTP、Markdown 按钮与测试工具的当前契约。",
+      "slug": "developers/sdk",
+      "version": "SDK 1.4.0",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "MoeBotOfficial/MoeBot-Plugin-SDK",
+        "path": "README.md",
+        "commit": "dcd5d2ce509fdd43ef1690b433e3f7ceba5d703d",
+        "public": true
+      },
+      "imported": true,
+      "originalSha256": "26ec79ef511f836d9a80e7171e8f8857567392dc63cf685c6522dcac8af24a09",
+      "renderedSha256": "5e2cc6f2a18d0ba9264d2c4c3b1409ddadfa957498a52b26122f6016bde5d946"
+    },
+    {
+      "title": "AI 辅助插件开发提示",
+      "description": "可交给 AI 的插件开发契约、包格式和测试要求。",
+      "slug": "developers/ai-plugin-prompt",
+      "version": "SDK 1.4.0",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "MoeBotOfficial/MoeBot-Plugin-SDK",
+        "path": "AI-PLUGIN-PROMPT.md",
+        "commit": "dcd5d2ce509fdd43ef1690b433e3f7ceba5d703d",
+        "public": true
+      },
+      "imported": true,
+      "originalSha256": "4a2c7caef6b4c2b3c032acb69f4dd8ef8b8b3bc645fb4484ce931e94d125df9c",
+      "renderedSha256": "800789f9db41b1b8f5b56600a5468d0ac2f9e7cf13cf0d43f1443614e63e7abb"
+    },
+    {
+      "title": "Daily 插件示例",
+      "description": "每日人品与图片的安装、配置、命令和开发方式。",
+      "slug": "developers/daily",
+      "version": "Daily 1.0.3",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "MoeBotOfficial/MoeBot-Plugin-Daily",
+        "path": "README.md",
+        "commit": "434274662fc2b44c99b0fd5e2fb372f3a35d4a16",
+        "public": true
+      },
+      "imported": true,
+      "originalSha256": "2f0b5b7f77d74c878a695a0267a6744118a195f9fd846724097d087f4d58881c",
+      "renderedSha256": "11c181fa3882974ad3d68336535261e2390c93626005c14523a444d49cfd26ae"
+    },
+    {
+      "title": "Markdown 与按钮示例",
+      "description": "学习 Markdown 消息、指令按钮、互动回调和管理员能力授权。",
+      "slug": "developers/markdown-demo",
+      "version": "Markdown Demo 0.2.0",
+      "verifiedAt": "2026-10-29",
+      "source": {
+        "repository": "MoeBotOfficial/MoeBot-Plugin-Markdown-Demo",
+        "path": "README.md",
+        "commit": "c11da31bb658dd8e9c51fb03d9ac9ef88fd195c1",
+        "public": true
+      },
+      "imported": true,
+      "originalSha256": "9a66ea4cd39176eb3ac693428dc57875e625220e7dd8168b900545c702fce9bf",
+      "renderedSha256": "7051f5c10283a13f7978e6e3b1ef8d72e813e7a5feea0fe9775909719cdc991c"
+    }
+  ]
+}
