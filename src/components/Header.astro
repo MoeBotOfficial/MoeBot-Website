@@ -8,10 +8,10 @@ const path = Astro.url.pathname;
     <a href="/" class="brand" aria-label="MoeBot 首页"><img src="/icon.svg" alt="" width="42" height="42" /><span><strong>MoeBot</strong><small>猫猫机器人</small></span></a>
     <span class="beta-badge">内测中</span>
     <nav class="desktop-nav" aria-label="主导航">{navigation.map(item => <a class:list={{ active: path.startsWith(item.href) }} href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav>
-    <div class="header-actions"><a class="console-link" href={site.consoleUrl} target="_blank" rel="noopener noreferrer">进入控制台 <Icon name="external" size={14}/></a><a class="button button-primary header-cta" href="/beta/">加入候补名单</a></div>
+    <div class="header-actions"><a class="console-link" href={site.consoleUrl} target="_blank" rel="noopener noreferrer">进入控制台 <Icon name="external" size={14}/></a><a class="github-star" href={site.repositoryUrl} target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 上为 MoeBot 官网点 Star" title="在 GitHub 上为 MoeBot 官网点 Star"><Icon name="github" size={18}/><span><span class="github-star-prefix">GitHub </span>Star</span><Icon name="star" size={14}/></a><a class="button button-primary header-cta" href="/beta/">加入候补名单</a></div>
     <button id="mobile-menu-toggle" class="icon-button mobile-menu-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="mobile-menu"><Icon name="menu" /></button>
   </div>
-  <nav id="mobile-menu" class="mobile-menu" aria-label="手机导航" hidden>{navigation.map(item => <a href={item.href}>{item.label}</a>)}<a href="/beta/">加入候补名单</a><a href={site.consoleUrl} target="_blank" rel="noopener noreferrer">进入控制台 ↗</a></nav>
+  <nav id="mobile-menu" class="mobile-menu" aria-label="手机导航" hidden>{navigation.map(item => <a href={item.href}>{item.label}</a>)}<a href="/beta/">加入候补名单</a><a href={site.repositoryUrl} target="_blank" rel="noopener noreferrer">GitHub Star ↗</a><a href={site.consoleUrl} target="_blank" rel="noopener noreferrer">进入控制台 ↗</a></nav>
 </header>
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('#mobile-menu-toggle');
