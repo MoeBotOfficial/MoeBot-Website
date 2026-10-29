@@ -7,3 +7,4 @@
 - 猫脸 Logo 与图标沿用 MoeBot WebUI 的现有品牌资产。
 - Astro、Pagefind、Mermaid、Shiki、Playwright 等使用其各自许可证，依赖版本记录在 package-lock.json。
 - Noto Sans SC 由 Google Fonts 提供，采用 SIL Open Font License。
+- GitHub 标志使用 GitHub Primer Octicons 的 mark-github 图标（MIT）：https://github.com/primer/octicons 。
