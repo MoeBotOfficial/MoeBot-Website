@@ -53,7 +53,11 @@ npm run docs:sync
 
 ## Vercel
 
-项目框架 Astro，安装 `npm ci`，构建 `npm run build`，输出 `dist`，Node 24。关联本仓库后 main 发布正式站点，PR 生成预览。不要把 QQ、CF 或模型密钥配置到官网。
+项目框架 Astro，安装 `npm ci`，构建 `npm run build`，输出 `dist`，Node 24。正式地址：https://moebot-website.vercel.app 。
+
+当前通过 GitHub Actions 发布：main push 完成类型检查、构建、链接检查与浏览器测试后，`scripts/deploy-vercel.mjs` 把同一提交源码发送到独立 Vercel 项目；PR 只验证，不接触发布密钥。Vercel 的 GitHub App 目前未获得新仓库读取权限，因此暂未启用原生 Git 预览部署。
+
+发布令牌存放于 GitHub 加密 Secret `VERCEL_TOKEN`，项目和团队 ID 在工作流中配置。维护者替换令牌时更新这个 Secret 即可。发布脚本只在 CI 或维护者终端运行，不打包进网页；普通构建不需要发布令牌。不要把 QQ、CF 或模型密钥配置到官网。
 
 ## 首版范围
 
